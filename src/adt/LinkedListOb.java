@@ -1,6 +1,7 @@
 package adt;
 
 import exeptions.InvalidPosition;
+import exeptions.NonExistantElement;
 
 public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
 
@@ -66,41 +67,60 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     }
 
     @Override
-    public void remove(int position) {
+    public T remove(int position) throws NonExistantElement {
+        if(position >= this.getSize()){
+            throw new NonExistantElement();
+        }
+        SimpleNode<T> candidate = this.getFirst().getNext();
+        for(int x = 0; x < position; x++){
 
+        }
+
+        return candidate.getData();
     }
 
     @Override
     public boolean contains(T seeker) {
-        return false;
+        boolean existence = false;
+        SimpleNode<T> finder = this.getFirst();
+        int tracker = 1;
+        while (existence == false && tracker <= this.getSize()){
+            if(finder.getData().equals(seeker)){
+                existence = true;
+            }
+            finder = finder.getNext();
+            tracker++;
+        }
+        return existence;
     }
 
     @Override
     public T get(int position) {
-        return null;
+        T result = null;
+
+
+        return result;
     }
 
     @Override
-    public void enQueue(T input) {
+    public void enQueue(T input) throws InvalidPosition {
         this.add(0, input);
     }
 
     @Override
-    public T deQueue() {
-        T extraction = this.get(this.getSize() -1 );
-        this.remove(this.getSize() -1);
+    public T deQueue() throws NonExistantElement {
+        T extraction = this.remove(this.getSize() -1);
         return extraction;
     }
 
     @Override
-    public void push(T input) {
+    public void push(T input) throws InvalidPosition {
         this.add(0, input);
     }
 
     @Override
-    public T pop() {
-        T extraction = this.get(0);
-        this.remove(0);
+    public T pop() throws NonExistantElement{
+        T extraction = this.remove(0);
         return extraction;
     }
 }
