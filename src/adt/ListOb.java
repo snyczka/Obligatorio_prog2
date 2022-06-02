@@ -11,6 +11,6 @@ public interface ListOb<T> {
 
     public boolean contains(T seeker);
 
-    public T get(int position);
+    public T get(int position) throws NonExistantElement;
 
 }

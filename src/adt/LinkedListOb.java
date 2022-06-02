@@ -47,35 +47,48 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     }
 
     @Override
-    public void add(int postiton, T input)throws InvalidPosition {
-        if(postiton >= this.getSize()){
+    public void add(int posititon, T input)throws InvalidPosition {
+        if(posititon >= this.getSize()){
             throw new InvalidPosition();
         }
         SimpleNode<T> addition = new SimpleNode<T>(input);
         if(this.getFirst() == null){
          this.setFirst(addition);
          this.setLast(addition);
+        }else if(posititon == 0){
+            addition.setNext(this.getFirst());
+            this.setFirst(addition);
+        }else if(posititon == this.getSize() -1){
+            addition.setNext(this.getLast());
+            this.setLast(addition);
         }else{
-            SimpleNode<T> mover = this.getFirst();
-            for(int x = 0; x < postiton; x++){
-                mover = mover.getNext();
+                SimpleNode<T> mover = this.getFirst();
+                for(int x = 0; x < posititon; x++){
+                    mover = mover.getNext();
+                }
+                addition.setNext(mover.getNext());
+                mover.setNext(addition);
             }
-            addition.setNext(mover.getNext());
-            mover.setNext(addition);
         }
-
-    }
 
     @Override
     public T remove(int position) throws NonExistantElement {
         if(position >= this.getSize()){
             throw new NonExistantElement();
         }
-        SimpleNode<T> candidate = this.getFirst().getNext();
-        for(int x = 0; x < position; x++){
+
+        SimpleNode<T> candidate = this.getFirst();
+        if(position == 0){
+            this.setFirst(candidate.getNext());
+        }else{
+            for (int x = 0; x < position - 1; x++) {
+                candidate = candidate.getNext();
+            }
+            SimpleNode<T> parent = candidate;
+            candidate = candidate.getNext();
+            parent.setNext(candidate);
 
         }
-
         return candidate.getData();
     }
 
@@ -83,8 +96,8 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     public boolean contains(T seeker) {
         boolean existence = false;
         SimpleNode<T> finder = this.getFirst();
-        int tracker = 1;
-        while (existence == false && tracker <= this.getSize()){
+        int tracker = 0;
+        while (existence == false && tracker < this.getSize()){
             if(finder.getData().equals(seeker)){
                 existence = true;
             }
@@ -95,10 +108,19 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     }
 
     @Override
-    public T get(int position) {
+    public T get(int position) throws NonExistantElement{
+        if(position >= this.getSize()){
+            throw new NonExistantElement();
+        }
         T result = null;
-
-
+        SimpleNode<T> finder = this.getFirst();
+        if(position == this.getSize() - 1){
+            finder = this.getLast();
+        }else{
+            for (int x = 0; x < position; x++){
+                finder = finder.getNext();
+            }
+        }
         return result;
     }
 

@@ -1,4 +1,4 @@
 package adt;
 
-public interface BinarySearchTreeOb {
+public interface BinarySearchTreeOb{
 }
