@@ -9,4 +9,6 @@ public interface StackOb<T> {
 
     public T pop() throws NonExistantElement;
 
+    public int size();
+
 }

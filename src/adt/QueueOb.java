@@ -9,4 +9,6 @@ public interface QueueOb<T> {
 
     public T deQueue() throws NonExistantElement;
 
+    public int size();
+
 }

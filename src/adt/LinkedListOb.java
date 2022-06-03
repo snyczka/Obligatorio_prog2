@@ -145,4 +145,9 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
         T extraction = this.remove(0);
         return extraction;
     }
+
+    @Override
+    public int size(){
+        return this.getSize();
+    }
 }
