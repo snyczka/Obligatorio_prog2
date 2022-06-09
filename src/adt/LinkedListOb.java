@@ -47,39 +47,41 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     }
 
     @Override
-    public void add(int posititon, T input)throws InvalidPosition {
-        if(posititon >= this.getSize()){
-            throw new InvalidPosition();
-        }
-        SimpleNode<T> addition = new SimpleNode<T>(input);
-        if(this.getFirst() == null){
-         this.setFirst(addition);
-         this.setLast(addition);
-        }else if(posititon == 0){
-            addition.setNext(this.getFirst());
-            this.setFirst(addition);
-        }else if(posititon == this.getSize() -1){
-            addition.setNext(this.getLast());
-            this.setLast(addition);
-        }else{
-                SimpleNode<T> mover = this.getFirst();
-                for(int x = 0; x < posititon; x++){
-                    mover = mover.getNext();
-                }
-                addition.setNext(mover.getNext());
-                mover.setNext(addition);
+    public void add(T value){
+        addToTheEnd(value);
+        size++;
+    }
+
+    private void addToTheEnd(T value) {
+        if (value != null) {
+
+            SimpleNode<T> elementToAdd = new SimpleNode<>(value);
+
+            if (this.first == null) { // si la lista es vacia
+
+                this.first = elementToAdd;
+                this.last = elementToAdd;
+
+            } else { // en caso de no ser vacia se agrega al final
+
+                this.last.setNext(elementToAdd);
+                this.last = elementToAdd;
             }
+
+        } else {
+            // si el elemento es vacio se ignora
         }
+    }
 
     @Override
     public T remove(int position) throws NonExistantElement {
         if(position >= this.getSize()){
             throw new NonExistantElement();
         }
-
         SimpleNode<T> candidate = this.getFirst();
         if(position == 0){
             this.setFirst(candidate.getNext());
+            size--;
         }else{
             for (int x = 0; x < position - 1; x++) {
                 candidate = candidate.getNext();
@@ -126,7 +128,7 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
 
     @Override
     public void enQueue(T input) throws InvalidPosition {
-        this.add(0, input);
+        this.add(input);
     }
 
     @Override
@@ -137,7 +139,7 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
 
     @Override
     public void push(T input) throws InvalidPosition {
-        this.add(0, input);
+        this.add(input);
     }
 
     @Override

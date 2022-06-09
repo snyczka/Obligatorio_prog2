@@ -2,16 +2,24 @@ package adt;
 
 public class TreeNode<K extends Comparable, T> {
 
-    private K key;
-    private T data;
-    private TreeNode<K, T> left;
-    private TreeNode<K, T> right;
+    public K key;
+    public T data;
+    public TreeNode<K, T> leftChild;
+    public TreeNode<K, T> rightChild;
+    public K parentKey;
 
-    public TreeNode(K inputKey, T inputData){
+
+    public TreeNode(K inputKey, T inputData, K parentKey) {
         this.key = inputKey;
         this.data = inputData;
-        this.left = null;
-        this.right = null;
+        this.parentKey = parentKey;
+    }
+
+    public TreeNode(K inputKey, T inputData) {
+        this.key = inputKey;
+        this.data = inputData;
+        this.leftChild = null;
+        this.rightChild = null;
     }
 
     public K getKey() {
@@ -30,19 +38,27 @@ public class TreeNode<K extends Comparable, T> {
         this.data = data;
     }
 
-    public TreeNode<K, T> getLeft() {
-        return left;
+    public TreeNode<K, T> getLeftChild() {
+        return leftChild;
     }
 
-    public void setLeft(TreeNode<K, T> left) {
-        this.left = left;
+    public void setLeftChild(TreeNode<K, T> leftChild) {
+        this.leftChild = leftChild;
     }
 
-    public TreeNode<K, T> getRight() {
-        return right;
+    public TreeNode<K, T> getRightChild() {
+        return rightChild;
     }
 
-    public void setRight(TreeNode<K, T> right) {
-        this.right = right;
+    public void setRightChild(TreeNode<K, T> rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    public K getParentKey() {
+        return parentKey;
+    }
+
+    public void setParentKey(K parentKey) {
+        this.parentKey = parentKey;
     }
 }

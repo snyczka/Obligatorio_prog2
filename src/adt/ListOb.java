@@ -5,7 +5,7 @@ import exeptions.NonExistantElement;
 
 public interface ListOb<T> {
 
-    public void add(int postiton, T input)throws InvalidPosition;
+    public void add(T value);
 
     public T remove(int position) throws NonExistantElement;
 
