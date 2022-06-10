@@ -1,13 +1,12 @@
 package adt;
 
-import exeptions.InvalidPosition;
 import exeptions.NonExistantElement;
 
 public interface ListOb<T> {
 
     public void add(T value);
 
-    public T remove(int position) throws NonExistantElement;
+    public void remove(int position) throws NonExistantElement;
 
     public boolean contains(T seeker);
 

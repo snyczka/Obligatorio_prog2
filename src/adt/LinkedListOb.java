@@ -1,5 +1,7 @@
 package adt;
 
+import exeptions.EmptyQueueException;
+import exeptions.EmptyStackException;
 import exeptions.InvalidPosition;
 import exeptions.NonExistantElement;
 
@@ -74,7 +76,7 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     }
 
     @Override
-    public T remove(int position) throws NonExistantElement {
+    public void remove(int position) throws NonExistantElement {
         if(position >= this.getSize()){
             throw new NonExistantElement();
         }
@@ -89,9 +91,8 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
             SimpleNode<T> parent = candidate;
             candidate = candidate.getNext();
             parent.setNext(candidate);
-
+            size--;
         }
-        return candidate.getData();
     }
 
     @Override
@@ -126,26 +127,55 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
         return result;
     }
 
+
     @Override
     public void enQueue(T input) throws InvalidPosition {
+        this.addToBeginning(input);
+        size++;
+    }
+
+    private void addToBeginning(T value) {
+        if (value != null) {
+
+            SimpleNode<T> elementToAdd = new SimpleNode<>(value);
+
+            if (this.first == null) { // si la lista es vacia
+
+                this.first = elementToAdd;
+                this.last = elementToAdd;
+
+            } else { // en caso de no ser vacia se agrega al comienzo
+
+                elementToAdd.setNext(this.first);
+                this.first = elementToAdd;
+            }
+
+        } else {
+            // si el elemento es vacio se ignora
+        }
+    }
+
+    @Override
+    public void deQueue() throws EmptyQueueException {
+        try {
+            remove(this.getSize() -1);
+        } catch (NonExistantElement e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void push(T input) {
         this.add(input);
     }
 
     @Override
-    public T deQueue() throws NonExistantElement {
-        T extraction = this.remove(this.getSize() -1);
-        return extraction;
-    }
-
-    @Override
-    public void push(T input) throws InvalidPosition {
-        this.add(input);
-    }
-
-    @Override
-    public T pop() throws NonExistantElement{
-        T extraction = this.remove(0);
-        return extraction;
+    public void pop() throws EmptyStackException {
+        try {
+            remove(this.getSize() -1);
+        } catch (NonExistantElement e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
