@@ -20,7 +20,7 @@ public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTre
     @Override
     public void insert(K key, T data, K parentKey) {
         if(raiz==null){
-            raiz= new TreeNode<>(key,data);
+            raiz= new TreeNode<K, T>(key,data);
         }
         TreeNode nodoPadre= findNode(parentKey,raiz);
         if(nodoPadre.key.compareTo(key)<0){
@@ -39,7 +39,7 @@ public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTre
 
     @Override
     public void delete(K key) {
-        TreeNode<K, T> root = delete(key,raiz);
+        delete(key,raiz);
     }
 
     @Override

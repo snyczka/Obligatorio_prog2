@@ -130,7 +130,7 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
 
     @Override
     public void enQueue(T input) throws InvalidPosition {
-        this.addToBeginning(input);
+        this.addToTheEnd(input);
         size++;
     }
 
@@ -158,7 +158,7 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
     @Override
     public void deQueue() throws EmptyQueueException {
         try {
-            remove(this.getSize() -1);
+            remove(0);
         } catch (NonExistantElement e) {
             e.printStackTrace();
         }
@@ -166,13 +166,13 @@ public class LinkedListOb<T> implements ListOb<T>, QueueOb<T>, StackOb<T>{
 
     @Override
     public void push(T input) {
-        this.add(input);
+        this.addToBeginning(input);
     }
 
     @Override
     public void pop() throws EmptyStackException {
         try {
-            remove(this.getSize() -1);
+            remove(0);
         } catch (NonExistantElement e) {
             e.printStackTrace();
         }

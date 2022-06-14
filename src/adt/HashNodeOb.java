@@ -1,6 +1,6 @@
 package adt;
 
-public class HashNodeOb<K extends Comparable, T> {
+public class HashNodeOb<K, T> {
 
     private K key;
     private T data;
@@ -37,6 +37,10 @@ public class HashNodeOb<K extends Comparable, T> {
     }
 
     public boolean equals(HashNodeOb<K, T> comparison){
-        return this.getData().equals(comparison.getData());
+        return this.getKey().equals(comparison.getKey());
+    }
+
+    public int hash(K key, int arraysize){
+        return 0;
     }
 }
