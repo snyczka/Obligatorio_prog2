@@ -1,4 +1,4 @@
-package adt.tads;
+package adt.tad;
 
 public class HashNodeOb<K , T> {
 

@@ -1,4 +1,4 @@
-package adt.tads;
+package adt.tad;
 
 public interface HeapOb<K extends Comparable, T> {
 
