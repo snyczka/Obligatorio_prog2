@@ -1,4 +1,4 @@
-package adt;
+package tads;
 
 public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTreeOb<K,T> {
 
@@ -39,7 +39,7 @@ public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTre
 
     @Override
     public void delete(K key) {
-        TreeNode<K, T> root = delete(key,raiz);
+        delete(key,raiz);
     }
 
     @Override

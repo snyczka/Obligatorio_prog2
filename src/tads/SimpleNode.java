@@ -1,4 +1,4 @@
-package adt;
+package tads;
 
 public class SimpleNode<T> {
 

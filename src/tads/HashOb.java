@@ -1,4 +1,4 @@
-package adt;
+package tads;
 
 public interface HashOb<K, T> {
 
