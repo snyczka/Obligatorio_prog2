@@ -1,4 +1,4 @@
-package tads;
+package adt.tads;
 
 public class HashTableOb<K, T> implements HashOb<K, T>{
     private static final int initialSize = 10;

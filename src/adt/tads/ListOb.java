@@ -1,4 +1,4 @@
-package tads;
+package adt.tads;
 
 import exeptions.NonExistantElement;
 

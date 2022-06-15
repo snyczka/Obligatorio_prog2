@@ -1,4 +1,4 @@
-package tads;
+package adt.tads;
 
 public class TreeNode<K extends Comparable, T> {
 
