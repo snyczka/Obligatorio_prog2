@@ -19,10 +19,10 @@ public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTre
 
     @Override
     public void insert(K key, T data, K parentKey) {
-        if(raiz==null){
-            raiz= new TreeNode<K, T>(key,data);
+        if(this.raiz==null){
+            this.raiz= new TreeNode<K, T>(key,data);
         }
-        TreeNode nodoPadre= findNode(parentKey,raiz);
+        TreeNode nodoPadre= findNode(parentKey,this.raiz);
         if(nodoPadre.key.compareTo(key)<0){
             nodoPadre.rightChild=new TreeNode(key,data);
         }else if(nodoPadre.key.compareTo(key)>0){
@@ -34,7 +34,7 @@ public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTre
 
     @Override
     public T find(K key) {
-        return findNode(key,raiz).getData();
+        return findNode(key,this.raiz).getData();
     }
 
     @Override
