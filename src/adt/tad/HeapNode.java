@@ -1,4 +1,4 @@
-package adt;
+package adt.tad;
 
 public class HeapNode<K extends Comparable, T>{
 
