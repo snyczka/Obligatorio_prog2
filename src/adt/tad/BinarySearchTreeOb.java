@@ -1,4 +1,4 @@
-package adt;
+package adt.tad;
 
 public interface BinarySearchTreeOb<K extends Comparable, T> {
 

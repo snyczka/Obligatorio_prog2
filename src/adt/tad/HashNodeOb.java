@@ -1,6 +1,6 @@
-package adt;
+package adt.tad;
 
-public class HashNodeOb<K, T> {
+public class HashNodeOb<K , T> {
 
     private K key;
     private T data;
@@ -43,4 +43,5 @@ public class HashNodeOb<K, T> {
     public int hash(K key, int arraysize){
         return 0;
     }
+
 }

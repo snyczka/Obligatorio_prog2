@@ -1,4 +1,4 @@
-package adt;
+package adt.tad;
 
 import exeptions.EmptyStackException;
 import exeptions.InvalidPosition;

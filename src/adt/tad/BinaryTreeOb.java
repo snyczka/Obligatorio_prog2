@@ -1,4 +1,4 @@
-package adt;
+package adt.tad;
 
 public class BinaryTreeOb <K extends Comparable<K>,T> implements BinarySearchTreeOb<K,T> {
 

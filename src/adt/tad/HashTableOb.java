@@ -1,9 +1,8 @@
-package adt;
+package adt.tad;
 
 import exeptions.InvalidKey;
 
 public class HashTableOb<K, T> implements HashOb<K, T>{
-
     private static final int initialSize = 10;
     private HashNodeOb<K, T>[] hashArray;
     private float loadFactor = 0.8f;
