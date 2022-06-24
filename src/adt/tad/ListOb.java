@@ -12,4 +12,6 @@ public interface ListOb<T> {
 
     public T get(int position) throws NonExistantElement;
 
+    public int size();
+
 }

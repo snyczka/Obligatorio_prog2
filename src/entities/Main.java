@@ -1,8 +1,10 @@
 package entities;
 
 import adt.tad.*;
+import exeptions.NonExistantElement;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
@@ -11,20 +13,19 @@ import java.util.Scanner;
 public class Main {
 
 
+    static HashOb<String, Style> availableStyles = new HashTableOb();
+    static ArrayListOb<String> styleKeys = new ArrayListOb(String.class);
+    static HashOb<String, User> validUsers = new HashTableOb();
+    static ArrayListOb<String> userKeys = new ArrayListOb(String.class);
+    static HashOb<Long, Beer> validBeers = new HashTableOb();
+    static ArrayListOb<Long> beerKeys = new ArrayListOb(Long.class);
+    static HashOb<Long, Review> validReviews = new HashTableOb();
+    static ArrayListOb<Long> reviewKeys = new ArrayListOb(Long.class);
+    static HashOb<Long, Brewery> validBreweries = new HashTableOb();
+    static ArrayListOb<Long> breweryKeys = new ArrayListOb(Long.class);
 
     public static void main(String[] args) {
 
-
-        HashOb<String, Style> availableStyles = new HashTableOb();
-        ListOb<String> styleKeys = new ArrayListOb(String.class);
-        HashOb<String, User> validUsers = new HashTableOb();
-        ListOb<String> userKeys = new ArrayListOb(String.class);
-        HashOb<Long, Beer> validBeers = new HashTableOb();
-        ListOb<Long> beerKeys = new ArrayListOb(Long.class);
-        HashOb<Long, Review> validReviews = new HashTableOb();
-        ListOb<Long> reviewKeys = new ArrayListOb(Long.class);
-        HashOb<Long, Brewery> validBreweries = new HashTableOb();
-        ListOb<Long> breweryKeys = new ArrayListOb(Long.class);
         BufferedReader lector;
         String linea;
         String partes[] = null;
@@ -34,7 +35,7 @@ public class Main {
         boolean salir = false;
         try {
 
-            lector = new BufferedReader(new InputStreamReader(new FileInputStream("beer_dataset_full.cvs"), "UTF-16"));
+            lector = new BufferedReader(new InputStreamReader(, "UTF-16"));
             while ((linea = lector.readLine()) != null) {
                 partes = linea.split(",");
                 //Agregar datos a las clases
@@ -72,6 +73,8 @@ public class Main {
                                 revAp, revFl, validBreweries.get(brewerId), validUsers.get(partes[7])));//Crear nueva reseña y ponerla en la lista
                         reviewKeys.add(revId);//Almacenar llave en un formato fácil de iterar
                     }
+                    validUsers.get(partes[7]).setReviews(validUsers.get(partes[7]).getReviews() + 1);
+
 
 
                 } catch (NumberFormatException firstLine) {
@@ -123,7 +126,53 @@ public class Main {
             }
         }
 
+    }
+
+    void consulta1(int año){
+        Brewery[] ranking = new Brewery[10];
+        try{
+            for(int i = 0; i < breweryKeys.size(); i++){
+
+            }
+        }catch (NonExistantElement NE){
+            System.out.println("No hay Cervecerías");
+        }
+
 
     }
+
+    void consulta2(){
+        User[] ranking = new User[15];
+        try {
+            for (int i = 0; i < userKeys.size(); i++) {
+                validUsers.get(userKeys.get(i));
+
+
+            }
+        }catch (NonExistantElement e){
+            System.out.println("No hay usuarios");
+        }
+
+    }
+
+    void consulta3(){
+
+    }
+
+    void consulta4(){
+
+    }
+
+    void consulta5(){
+
+    }
+
+    void mergeSort(Object[] array){
+        if(array.length == 1){
+
+        }
+
+    }
+
 }
 

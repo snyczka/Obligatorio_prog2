@@ -10,11 +10,14 @@ public class Brewery {
     private String name;
     private ListOb<Beer> beers;
 
+
     public Brewery(long idNum, String brName){
         this.id = idNum;
         this.name = brName;
         this.beers = new ArrayListOb<Beer>(Beer.class);
+
     }
+
 
 
 

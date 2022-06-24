@@ -54,7 +54,8 @@ public class ArrayListOb<T> implements ListOb<T>{
         if(position <= this.listArray.length){
             throw new NonExistantElement();
         }else {
-            this.listArray[position] = null;
+            this.listArray[position] = this.listArray[this.size-1];
+            this.listArray[this.size-1] = null;
             this.setSize(this.getSize() - 1);
         }
 
@@ -64,8 +65,8 @@ public class ArrayListOb<T> implements ListOb<T>{
     public boolean contains(T seeker) {
         boolean result = false;
 
-        for(int i = 0; !result &&  i <this.listArray.length; i++) {
-            if (listArray[i] == null) {
+        for(int i = 0; !result &&  i <this.size; i++) {
+            if (listArray[i] == seeker) {
                 result = true;
             }
         }
@@ -79,11 +80,16 @@ public class ArrayListOb<T> implements ListOb<T>{
             throw new NonExistantElement();
         }
             T result = this.listArray[position];
-            this.setSize(this.getSize() - 1);
 
 
 
         return result;
+    }
+
+
+    @Override
+    public int size() {
+        return this.getSize();
     }
 }
 
