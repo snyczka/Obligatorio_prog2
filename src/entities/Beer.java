@@ -1,5 +1,8 @@
 package entities;
 
+import adt.tad.ArrayListOb;
+import adt.tad.LinkedListOb;
+import adt.tad.ListOb;
 import adt.tad.SimpleNode;
 
 public class Beer {
@@ -7,7 +10,17 @@ public class Beer {
     private long id;
     private String name;
     private double abv;
-    private SimpleNode<Review> reviews;
+    private ListOb<Review> reviews;
+    private Style type;
+
+    public Beer(long bId, String bName, double bAbv, Style btype){
+        this.id = bId;
+        this.name = bName;
+        this.abv = bAbv;
+        this.type = btype;
+        this.reviews = new ArrayListOb<Review>(Review.class);
+    }
+
 
     public long getId() {
         return id;
@@ -33,11 +46,11 @@ public class Beer {
         this.abv = abv;
     }
 
-    public SimpleNode<Review> getReviews() {
-        return reviews;
+    public Style getType() {
+        return type;
     }
 
-    public void setReviews(SimpleNode<Review> reviews) {
-        this.reviews = reviews;
+    public void setType(Style type) {
+        this.type = type;
     }
 }

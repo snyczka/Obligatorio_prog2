@@ -1,20 +1,22 @@
 package entities;
 
+import adt.tad.ArrayListOb;
+import adt.tad.LinkedListOb;
+import adt.tad.ListOb;
 import adt.tad.SimpleNode;
 
 public class Brewery {
     private long id;
     private String name;
-    private SimpleNode<Review> reviews;
-    private SimpleNode<Beer> beers;
+    private ListOb<Beer> beers;
 
-    public SimpleNode<Beer> getBeers() {
-        return beers;
+    public Brewery(long idNum, String brName){
+        this.id = idNum;
+        this.name = brName;
+        this.beers = new ArrayListOb<Beer>(Beer.class);
     }
 
-    public void setBeers(SimpleNode<Beer> beers) {
-        this.beers = beers;
-    }
+
 
     public long getId() {
         return id;
@@ -32,11 +34,5 @@ public class Brewery {
         this.name = name;
     }
 
-    public SimpleNode<Review> getReviews() {
-        return reviews;
-    }
 
-    public void setReviews(SimpleNode<Review> reviews) {
-        this.reviews = reviews;
-    }
 }

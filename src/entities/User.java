@@ -5,7 +5,13 @@ import adt.tad.SimpleNode;
 public class User {
 
     private String username;
-    private SimpleNode<Review> reviews;
+
+    private int reviews;
+
+    public User(String name){
+        this.username = name;
+        this.reviews = 0;
+    }
 
     public String getUsername() {
         return username;
@@ -15,11 +21,11 @@ public class User {
         this.username = username;
     }
 
-    public SimpleNode<Review> getReviews() {
+    public int getReviews() {
         return reviews;
     }
 
-    public void setReviews(SimpleNode<Review> reviews) {
+    public void setReviews(int reviews) {
         this.reviews = reviews;
     }
 }

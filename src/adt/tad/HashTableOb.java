@@ -17,6 +17,12 @@ public class HashTableOb<K, T> implements HashOb<K, T>{
         this.arraySize = 10;
     }
 
+    public HashTableOb(){
+        this.hashArray = new HashNodeOb[initialSize];
+        this.arraySize = initialSize;
+        this.size = 0;
+    }
+
 
     @Override
     public void put(K key, T value) {
@@ -128,6 +134,11 @@ public class HashTableOb<K, T> implements HashOb<K, T>{
     private int hash(K key){
         if(key instanceof Integer){
             return ((int)key)%this.arraySize;
+        }else if(key instanceof Long){
+            return ((Long) key).intValue();
+
+        }else if(key instanceof String){
+                return ((String) key).length()%this.arraySize;
         }else{
             return key.toString().length()%this.arraySize; //Se asume que cualquier K tendrá su método de string reescrito de ser necesario
         }

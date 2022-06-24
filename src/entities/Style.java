@@ -5,7 +5,10 @@ import adt.tad.SimpleNode;
 public class Style {
 
     private String name;
-    private SimpleNode<Beer> beers;
+
+    public Style(String sName){
+        this.name = sName;
+    }
 
     public String getName() {
         return name;
@@ -15,11 +18,4 @@ public class Style {
         this.name = name;
     }
 
-    public SimpleNode<Beer> getBeers() {
-        return beers;
-    }
-
-    public void setBeers(SimpleNode<Beer> beers) {
-        this.beers = beers;
-    }
 }

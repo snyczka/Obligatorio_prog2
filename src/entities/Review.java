@@ -10,6 +10,20 @@ public class Review {
     private double aromaScore;
     private double appearanceScore;
     private double flavourScore;
+    private Brewery business;
+    private User taster;
+
+    public Review(long revId, Date revDate, double oScore, double arScore,
+                  double apScore, double fScore, Brewery revBr, User revT){
+        this.id = revId;
+        this.date = revDate;
+        this.overallScore = oScore;
+        this.aromaScore = arScore;
+        this.appearanceScore = apScore;
+        this.flavourScore = fScore;
+        this.business = revBr;
+        this.taster = revT;
+    }
 
     public long getId() {
         return id;
@@ -57,5 +71,21 @@ public class Review {
 
     public void setFlavourScore(double flavourScore) {
         this.flavourScore = flavourScore;
+    }
+
+    public Brewery getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Brewery business) {
+        this.business = business;
+    }
+
+    public User getTaster() {
+        return taster;
+    }
+
+    public void setTaster(User taster) {
+        this.taster = taster;
     }
 }
