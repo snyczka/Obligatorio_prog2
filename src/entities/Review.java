@@ -1,11 +1,13 @@
 package entities;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Review {
 
     private long id;
-    private Date date;
+    private LocalDateTime date;
     private double overallScore;
     private double aromaScore;
     private double appearanceScore;
@@ -13,7 +15,7 @@ public class Review {
     private Brewery business;
     private User taster;
 
-    public Review(long revId, Date revDate, double oScore, double arScore,
+    public Review(long revId, LocalDateTime revDate, double oScore, double arScore,
                   double apScore, double fScore, Brewery revBr, User revT){
         this.id = revId;
         this.date = revDate;
@@ -33,11 +35,11 @@ public class Review {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

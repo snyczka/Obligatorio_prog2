@@ -4,29 +4,29 @@ import adt.tad.*;
 import exeptions.NonExistantElement;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileReader;
+import com.opencsv.CSVReader;
 import java.io.InputStreamReader;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
 
 
-    static HashOb<String, Style> availableStyles = new HashTableOb();
-    static ArrayListOb<String> styleKeys = new ArrayListOb(String.class);
-    static HashOb<String, User> validUsers = new HashTableOb();
-    static ArrayListOb<String> userKeys = new ArrayListOb(String.class);
-    static HashOb<Long, Beer> validBeers = new HashTableOb();
-    static ArrayListOb<Long> beerKeys = new ArrayListOb(Long.class);
-    static HashOb<Long, Review> validReviews = new HashTableOb();
-    static ArrayListOb<Long> reviewKeys = new ArrayListOb(Long.class);
-    static HashOb<Long, Brewery> validBreweries = new HashTableOb();
-    static ArrayListOb<Long> breweryKeys = new ArrayListOb(Long.class);
+    static HashOb<String, Style> availableStyles = new HashTableOb(String.class);
+    static HashOb<String, User> validUsers = new HashTableOb(String.class);
+    static HashOb<Long, Beer> validBeers = new HashTableOb(Long.class);
+    static HashOb<Long, Review> validReviews = new HashTableOb(Long.class);
+    static HashOb<Long, Brewery> validBreweries = new HashTableOb(Long.class);
 
     public static void main(String[] args) {
 
-        BufferedReader lector;
+
         String linea;
         String partes[] = null;
 
@@ -35,9 +35,10 @@ public class Main {
         boolean salir = false;
         try {
 
-            lector = new BufferedReader(new InputStreamReader(, "UTF-16"));
-            while ((linea = lector.readLine()) != null) {
-                partes = linea.split(",");
+            CSVReader lector = new CSVReader(new FileReader(""));/*Fixme Poner nombre de archivo*/
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
+            while ((partes = lector.readNext()) != null) {
+
                 //Agregar datos a las clases
                 try {
                     //,brewery_id(1),brewery_name(2),review_time(3),review_overall(4),review_aroma(5),review_appearance(6),
@@ -45,35 +46,30 @@ public class Main {
                     // beer_beerid(13)
                     long revId = Long.parseLong(partes[0]);
                     long brewerId = Long.parseLong(partes[1]);
-                    Date dateOfRev = new Date(partes[3]);
+                    LocalDateTime dateOfRev = Instant.ofEpochSecond(Long.parseLong(partes[3])).atZone(ZoneId.systemDefault()).toLocalDateTime();
                     double revOv = Double.parseDouble(partes[4]);
                     double revAr = Double.parseDouble(partes[5]);
                     double revAp = Double.parseDouble(partes[6]);
                     double revFl = Double.parseDouble(partes[10]); //Supongo que "Flavor" es lo mismo que review_taste
                     double bAbv = Double.parseDouble(partes[12]);
-                    long beerId = Long.parseLong(partes[12]);
+                    long beerId = Long.parseLong(partes[13]);
                     if(availableStyles.get(partes[8]) == null){
                         availableStyles.put(partes[8], new Style(partes[8]));//Crear nuevo Estilo y ponerlo en la lista
-                        styleKeys.add(partes[8]); //Almacenar llave en un formato fácil de iterar
                     }
                     if(validBeers.get(beerId) == null){
                         validBeers.put(beerId, new Beer(beerId, partes[11],bAbv,availableStyles.get(partes[8]))); //Crear nueva cerveza y ponerla en la lista
-                        beerKeys.add(beerId); //Almacenar llave en un formato fácil de iterar
                     }
                     if(validBreweries.get(brewerId) == null){
                         validBreweries.put(brewerId, new Brewery(brewerId, partes[2])); //Crear nueva cervecería y ponerla en la lista
-                        breweryKeys.add(brewerId); //Almacenar llave en un formato fácil de iterar
                     }
                     if(validUsers.get(partes[7]) == null){
                         validUsers.put(partes[7],new User(partes[7])); //Crear nuevo usuario y ponerlo en la lista
-                        userKeys.add(partes[7]); //Almacenar llave en un formato fácil de iterar
                     }
                     if(validReviews.get(revId) == null){
                         validReviews.put(revId, new Review(revId, dateOfRev, revOv, revAr,
                                 revAp, revFl, validBreweries.get(brewerId), validUsers.get(partes[7])));//Crear nueva reseña y ponerla en la lista
-                        reviewKeys.add(revId);//Almacenar llave en un formato fácil de iterar
                     }
-                    validUsers.get(partes[7]).setReviews(validUsers.get(partes[7]).getReviews() + 1);
+                    validUsers.get(partes[7]).setReviews(validUsers.get(partes[7]).getReviews() + 1); //No funciona....
 
 
 
@@ -130,13 +126,18 @@ public class Main {
 
     void consulta1(int año){
         Brewery[] ranking = new Brewery[10];
-        try{
-            for(int i = 0; i < breweryKeys.size(); i++){
+
+            for(int i = 0; i < validReviews.size(); i++){
+                try {
+                    if(validReviews.get(validReviews.getKeys().get(i)).getDate().getYear() == año){
+
+                    }
+                }catch (NonExistantElement n){
+
+                }
 
             }
-        }catch (NonExistantElement NE){
-            System.out.println("No hay Cervecerías");
-        }
+
 
 
     }
@@ -144,8 +145,8 @@ public class Main {
     void consulta2(){
         User[] ranking = new User[15];
         try {
-            for (int i = 0; i < userKeys.size(); i++) {
-                validUsers.get(userKeys.get(i));
+            for (int i = 0; i < validUsers.size(); i++) {
+                validUsers.getKeys().get(i);
 
 
             }

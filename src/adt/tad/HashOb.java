@@ -11,4 +11,6 @@ public interface HashOb<K, T> {
     public void remove(K key) throws InvalidKey;
 
     public int size();
+
+    public ArrayListOb<K> getKeys();
 }

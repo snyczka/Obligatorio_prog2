@@ -3,6 +3,7 @@ package adt.tad;
 import exeptions.NonExistantElement;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ArrayListOb<T> implements ListOb<T>{
 
@@ -39,7 +40,7 @@ public class ArrayListOb<T> implements ListOb<T>{
         }
         this.setSize(this.getSize() + 1);
         if(this.getSize() == this.listArray.length){
-            T[] newArray = (T[]) Array.newInstance(this.listArray.getClass(), this.listArray.length * 10);
+            T[] newArray = Arrays.copyOf(this.listArray, this.listArray.length * 10);
             for(int i = 0; this.listArray.length > i; i++){
                 newArray[i] = this.listArray[i];
             }
@@ -76,7 +77,7 @@ public class ArrayListOb<T> implements ListOb<T>{
 
     @Override
     public T get(int position) throws NonExistantElement {
-        if(position <= this.listArray.length){
+        if(position >= this.listArray.length){
             throw new NonExistantElement();
         }
             T result = this.listArray[position];
